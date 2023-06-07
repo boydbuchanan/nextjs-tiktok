@@ -4,6 +4,10 @@ This library will create a window popup that allows a user to authorize the app 
 
 The server will then query for the user and get their profile information and return that to the provider. This is to demonstrate the full process, it is recomended to store the access and refresh tokens for the user and refresh every day.
 
+## Authentication Flow
+
+Authentication starts with your button, which generates a popup window for the TikTok Login. When the redirect Url is hit, the library posts code in the url as a message to the window opener. There is a listener next to the button that will pick up the code from the message and send the code to the api. On the server, the client secret is used to exchange the code for an access token, which allows further queries for the users endpoints based on permissions granted.
+
 ## Installation
 
 Copy the following files into their respective directories
@@ -44,14 +48,14 @@ Simply use the following:
 
 From a button of course.
 
-```nodejs
+```javascript
 const handleLoginButtonClick = () => {
   // Open the TikTok login popup
   TikTokAPI.authorize(['user.info.basic']);
 };
 ```
  Called from a button 
-```nodejs
+```javascript
 <button onClick={() => handleLoginButtonClick()}>
   <TikTokLogo /> Connect TikTok
 </button>
@@ -60,7 +64,7 @@ const handleLoginButtonClick = () => {
 ## Data & Usage
 An example provider is available to use the information, but is not stored in any session and will be lost.
 
-```
+```javascript
 function TikTokUser() {
   const { state: { userInfo } } = useTikTok();
   return (
