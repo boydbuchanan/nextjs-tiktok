@@ -1,25 +1,7 @@
 import { createContext, useState, useContext, useRef, useEffect } from 'react';
 import {setCookie, getCookie} from 'src/util';
 
-export const TikTokContext = createContext({state: {}, actions: {}});
-
-export function useTikTok() {
-  return useContext(TikTokContext);
-}
-
-export function TikTokProvider({ children }) {
-  const [userInfo, setUserInfo] = useState('');
-  const value = {
-    state: { userInfo },
-    actions: { setUserInfo },
-  };
-
-  return (
-    <TikTokContext.Provider value={value}>
-      {children}
-    </TikTokContext.Provider>
-  )
-}
+import { useTikTok } from 'api/TikTokContext';
 
 export const TikTokAPI = {
   config: {

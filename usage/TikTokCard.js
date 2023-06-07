@@ -7,7 +7,8 @@ import { } from "react";
 
 import ClearIcon from '@mui/icons-material/Clear';
 import {TikTokLogo} from 'src/icons/TikTok';
-import  { TikTokAPI, TikTokProvider, TikTokListener, TikTokRedirect, useTikTok } from 'src/api/TikTokApi';
+import { TikTokAPI, TikTokListener, TikTokRedirect } from 'src/api/TikTokApi';
+import { TikTokProvider, useTikTok } from 'src/api/TikTokContext';
 
 export default function TikTokCard() {
   
